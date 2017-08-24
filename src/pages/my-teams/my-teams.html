@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color=primary>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+    <ion-title> Tournamento </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar color=secondary>
+    <ion-title class="text" >My Teams </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngIf="!favs">
+    <ion-card-header class="my-teams-header">
+      No Followed Teams
+    </ion-card-header>
+    <ion-card-content>
+      <p>You are not currently following any teams.</p>
+      <p>First select a tournament, then you can follow teams from their team page.</p>
+      <button ion-button icon-left full (click)="goToTourny()"> <ion-icon name="search"></ion-icon> Find Tournament </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="favs">
+    <ion-list-header class="my-teams-header">
+        Followed Teams
+      </ion-list-header>
+    <ion-list>
+      
+      <button ion-item *ngFor="let item of favs" (click)="favTapped($event, item)">
+        <ion-icon name="star" ></ion-icon>
+         {{item.team?.name}} 
+         <p> {{ item?.tournamentName}} </p> 
+      </button>
+    </ion-list>
+
+    <ion-card-content>
+      <p>To follow more teams, select a tournament, then you can follow teams from their team page.</p>
+      <button ion-button icon-left full (click)="goToTourny()"> <ion-icon name="search"></ion-icon> Find Tournament </button>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>
